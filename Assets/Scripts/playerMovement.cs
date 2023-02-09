@@ -38,7 +38,9 @@ public class playerMovement : MonoBehaviour
         }
     
         if (ladder == true){
-           Debug.Log(ladder);
+           if (Input.GetButtonDown("Jump")){
+                rb.AddForce(new Vector2(0, JumpHeight * 10), ForceMode2D.Impulse);
+           }
         }
     
     }
