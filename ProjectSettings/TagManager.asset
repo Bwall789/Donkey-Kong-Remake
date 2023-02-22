@@ -7,6 +7,8 @@ TagManager:
   - Ladder
   - Death
   - Win
+  - cam1
+  - cam2
   layers:
   - Default
   - TransparentFX
