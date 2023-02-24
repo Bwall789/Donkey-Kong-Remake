@@ -18,7 +18,7 @@ public class PlayerDeath : MonoBehaviour
 
      void OnTriggerEnter2D(Collider2D collisionDetect){
         if (collisionDetect.gameObject.tag == "Death"){
-            transform.position = new Vector3(0.067f,1.52f,-0.37f);
+            transform.position = new Vector3(-10.19f,-8.96f,0f);
         }
     }
 

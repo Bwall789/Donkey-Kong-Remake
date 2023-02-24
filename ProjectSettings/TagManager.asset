@@ -9,6 +9,7 @@ TagManager:
   - Win
   - cam1
   - cam2
+  - enemy
   layers:
   - Default
   - TransparentFX
