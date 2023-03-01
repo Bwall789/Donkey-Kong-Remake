@@ -22,14 +22,19 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var hMovement = Input.GetAxis("Horizontal");
+        var vMovement = Input.GetAxis("Vertical");
+
+        
         if (Mathf.Abs(rb.velocity.y) < 0.005f){
             speed = MoveSpeed;
         }else{
             speed = JumpSpeed;
         }
 
-        var movement = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(movement,0,0) * Time.deltaTime * speed;
+        if (vMovement == 0){
+            transform.position += new Vector3(hMovement,0,0) * Time.deltaTime * speed;
+        }
     
         if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) <0.001f)
         {
@@ -38,9 +43,8 @@ public class playerMovement : MonoBehaviour
         }
     
         if (ladder == true){
-           if (Input.GetButtonDown("Jump")){
-                rb.AddForce(new Vector2(0, JumpHeight * 10), ForceMode2D.Impulse);
-           }
+            vMovement = Input.GetAxis("Vertical");
+            transform.position += new Vector3(0,vMovement,0) * Time.deltaTime * speed * 5;
         }
     
     }
