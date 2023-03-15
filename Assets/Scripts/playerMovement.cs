@@ -8,45 +8,67 @@ public class playerMovement : MonoBehaviour
     public float JumpSpeed = new float();
     public float JumpHeight = new float();
     public bool ladder = new bool();
+    public bool check = new bool();
 
     private Rigidbody2D rb;
     private float speed = new float();
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private SpriteRenderer spriteRenderer;
+    public Sprite[] runSprites;
+    public Sprite climbSpreite;
+    private int spriteIndex;
+
+    void Start(){
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         ladder = false;
+        check = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+    
+    }
+
+    void FixedUpdate() {
+        Movement();
+        LadderMovement();
+    }
+
+    void Movement(){
+
         var hMovement = Input.GetAxis("Horizontal");
         var vMovement = Input.GetAxis("Vertical");
 
-        
         if (Mathf.Abs(rb.velocity.y) < 0.005f){
             speed = MoveSpeed;
-        }else{
+        } else {
             speed = JumpSpeed;
         }
 
-        if (vMovement == 0){
-            transform.position += new Vector3(hMovement,0,0) * Time.deltaTime * speed;
+        transform.position += new Vector3(hMovement,0.001f,0.001f) * Time.deltaTime * speed;
+    
+        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.005f){
+            rb.AddForce(new Vector2(0.001f, JumpHeight), ForceMode2D.Impulse);
         }
     
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) <0.001f)
-        {
-        var storeSpeed = MoveSpeed;
-         rb.AddForce(new Vector2(0, JumpHeight), ForceMode2D.Impulse);
+
+    }
+
+    void LadderMovement() {
+
+        var hMovement = Input.GetAxis("Horizontal");
+        var vMovement = Input.GetAxis("Vertical");
+
+        if (ladder == true && hMovement == 0){
+            transform.position += new Vector3(0.001f,vMovement,0.001f) * Time.deltaTime * speed * 5f;
         }
-    
-        if (ladder == true){
-            vMovement = Input.GetAxis("Vertical");
-            transform.position += new Vector3(0,vMovement,0) * Time.deltaTime * speed * 5;
+
+        if(ladder == true && hMovement == 0 && Mathf.Abs(rb.velocity.y) > 0.005f){
+            check = true;
+            rb.gravityScale = 0;
+        }else{
+            rb.gravityScale = 1;
         }
-    
     }
 
      void OnTriggerStay2D(Collider2D collisionDetect){

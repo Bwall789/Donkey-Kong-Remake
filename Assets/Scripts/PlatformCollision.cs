@@ -76,7 +76,7 @@ public class PlatformCollision : MonoBehaviour
             platform5.GetComponent<Collider2D>().enabled = false;
         }
 
-        if (playerY > h6 + 0.2){
+        if (playerY > h6 + 0.3){
             platform6.GetComponent<Collider2D>().enabled = true;
             
         } else {
