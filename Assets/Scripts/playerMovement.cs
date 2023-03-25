@@ -51,6 +51,8 @@ public class playerMovement : MonoBehaviour
             speed = JumpSpeed;
         }
 
+        PlayerDir(hMovement);
+
         transform.position += new Vector3(hMovement,0.001f,0.001f) * Time.deltaTime * speed;
     
         if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.005f){
@@ -104,7 +106,12 @@ public class playerMovement : MonoBehaviour
 
     }
 
-
+    private void PlayerDir(float hMovement){
+        if (hMovement < 0.001f){
+            var targetAngles = transform.eulerAngles + 180f * Vector3.up;
+            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, 1f * Time.deltaTime);
+        }
+    }
 
 
 
