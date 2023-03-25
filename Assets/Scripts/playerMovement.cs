@@ -107,9 +107,12 @@ public class playerMovement : MonoBehaviour
     }
 
     private void PlayerDir(float hMovement){
-        if (hMovement < 0.001f){
-            var targetAngles = transform.eulerAngles + 180f * Vector3.up;
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, 1f * Time.deltaTime);
+        if (hMovement < -0.001f){
+            spriteRenderer.flipX = true;
+        }else {
+            if (spriteRenderer.flipX == true && hMovement >= 0.001f){
+                spriteRenderer.flipX = false;
+            }
         }
     }
 
