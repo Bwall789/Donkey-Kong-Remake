@@ -8,7 +8,7 @@ public class playerMovement : MonoBehaviour
     public float JumpSpeed = new float();
     public float JumpHeight = new float();
     public bool ladder = new bool();
-    public bool check = new bool();
+    public bool idle = new bool();
 
     private Rigidbody2D rb;
     private float speed = new float();
@@ -22,7 +22,7 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         ladder = false;
-        check = false;
+        idle = true;
     }
 
     private void OnEnable(){
@@ -52,6 +52,7 @@ public class playerMovement : MonoBehaviour
         }
 
         PlayerDir(hMovement);
+        PlayerIdle(hMovement);
 
         transform.position += new Vector3(hMovement,0.001f,0.001f) * Time.deltaTime * speed;
     
@@ -72,7 +73,6 @@ public class playerMovement : MonoBehaviour
         }
 
         if(ladder == true && hMovement == 0 && Mathf.Abs(rb.velocity.y) > 0.005f){
-            check = true;
             rb.gravityScale = 0;
         }else{
             rb.gravityScale = 1;
@@ -96,12 +96,15 @@ public class playerMovement : MonoBehaviour
     private void AnimateSprite(){
         if (ladder && Mathf.Abs(rb.velocity.y) > 0.005f){
             spriteRenderer.sprite = climbSprite;
-        }else {
+        }else if (idle == false){
+            
             spriteIndex++;
             if (spriteIndex >= runSprites.Length){
                 spriteIndex = 0;
             }
             spriteRenderer.sprite = runSprites[spriteIndex];
+        }else{
+            spriteRenderer.sprite = runSprites[0];
         }
 
     }
@@ -117,7 +120,13 @@ public class playerMovement : MonoBehaviour
     }
 
 
-
+    private void PlayerIdle(float hMovement){
+        if (hMovement > 0.005f || hMovement < -0.005f){
+            idle = false;
+        }else{
+            idle = true;
+        }
+    }
 
 
 
