@@ -15,7 +15,7 @@ public class playerMovement : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     public Sprite[] runSprites;
-    public Sprite climbSpreite;
+    public Sprite climbSprite;
     private int spriteIndex;
 
     void Start(){
@@ -25,8 +25,14 @@ public class playerMovement : MonoBehaviour
         check = false;
     }
 
-    void Update() {
-    
+    private void OnEnable(){
+
+        InvokeRepeating(nameof(AnimateSprite), 1f/12f, 1f/12f);
+    }
+
+     private void OnDisable(){
+
+        CancelInvoke();
     }
 
     void FixedUpdate() {
@@ -82,6 +88,29 @@ public class playerMovement : MonoBehaviour
             ladder = false;
         }
     }
+
+
+
+    private void AnimateSprite(){
+        if (ladder && Mathf.Abs(rb.velocity.y) > 0.005f){
+            spriteRenderer.sprite = climbSprite;
+        }else {
+            spriteIndex++;
+            if (spriteIndex >= runSprites.Length){
+                spriteIndex = 0;
+            }
+            spriteRenderer.sprite = runSprites[spriteIndex];
+        }
+
+    }
+
+
+
+
+
+
+
+
 
 
 
