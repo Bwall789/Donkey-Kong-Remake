@@ -22,6 +22,10 @@ public class PlatformCollision : MonoBehaviour
     private float h6;
     private float playerY;
 
+    private int h1Layer;
+
+    // Physics.IgnoreLayerCollision (layer1, layer2, true) Physics.IgnoreLayerCollision (layer1, layer2, false)
+
 
 
     // Start is called before the first frame update
@@ -34,6 +38,8 @@ public class PlatformCollision : MonoBehaviour
         h5 = platform5.transform.position.y;
         h6 = platform6.transform.position.y;
 
+        h1Layer = platform1.layer;
+
     }
 
     // Update is called once per frame
@@ -43,9 +49,10 @@ public class PlatformCollision : MonoBehaviour
         playerY = player.transform.position.y;
     
         if (playerY > h1){
-            platform1.GetComponent<Collider2D>().enabled = true;
+            Physics2D.IgnoreLayerCollision(h1Layer, player.layer, false);
+            Debug.Log("yo");
         } else {
-            platform1.GetComponent<Collider2D>().enabled = false;
+            Physics2D.IgnoreLayerCollision(h1Layer, player.layer, true);
         }
 
         if (playerY > h2){
@@ -82,7 +89,6 @@ public class PlatformCollision : MonoBehaviour
         } else {
             platform6.GetComponent<Collider2D>().enabled = false;
         }
-
 
     }
 }
