@@ -54,12 +54,12 @@ public class playerMovement : MonoBehaviour
         PlayerDir(hMovement);
         PlayerIdle(hMovement);
 
-        transform.position += new Vector3(hMovement,0.001f,0.001f) * Time.deltaTime * speed;
     
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.005f){
+        if (Input.GetButtonDown("Jump")){
             rb.AddForce(new Vector2(0.001f, JumpHeight), ForceMode2D.Impulse);
         }
     
+        transform.position += new Vector3(hMovement,0.001f,0.001f) * Time.deltaTime * speed;
 
     }
 
