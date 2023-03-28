@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
     public float JumpSpeed = new float();
     public float JumpHeight = new float();
     public bool ladder = new bool();
+    public bool Jumping = new bool();
     public bool idle = new bool();
 
     private Rigidbody2D rb;
@@ -23,6 +24,7 @@ public class playerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         ladder = false;
         idle = true;
+        Jumping = false;
     }
 
     private void OnEnable(){
@@ -34,6 +36,11 @@ public class playerMovement : MonoBehaviour
 
         CancelInvoke();
     }
+
+    void Update(){
+        IsJumping();
+    }
+
 
     void FixedUpdate() {
         Movement();
@@ -53,11 +60,6 @@ public class playerMovement : MonoBehaviour
 
         PlayerDir(hMovement);
         PlayerIdle(hMovement);
-
-    
-        if (Input.GetButtonDown("Jump")){
-            rb.AddForce(new Vector2(0.001f, JumpHeight), ForceMode2D.Impulse);
-        }
     
         transform.position += new Vector3(hMovement,0.001f,0.001f) * Time.deltaTime * speed;
 
@@ -94,7 +96,7 @@ public class playerMovement : MonoBehaviour
 
 
     private void AnimateSprite(){
-        if (ladder && Mathf.Abs(rb.velocity.y) > 0.005f){
+        if (ladder && Mathf.Abs(rb.velocity.y) > 0.005f && Jumping == false){
             spriteRenderer.sprite = climbSprite;
         }else if (idle == false){
             
@@ -128,7 +130,17 @@ public class playerMovement : MonoBehaviour
         }
     }
 
+    private void IsJumping(){
+        
+        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.001f){
+            Jumping = true;
+            rb.AddForce(new Vector2(0.001f, JumpHeight), ForceMode2D.Impulse);
+        }
 
+        if (Jumping == true && Mathf.Abs(rb.velocity.y) < 0.001f){
+            Jumping = false;
+        }
+    }
 
 
 

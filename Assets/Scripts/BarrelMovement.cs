@@ -4,37 +4,17 @@ using UnityEngine;
 
 public class BarrelMovement : MonoBehaviour
 {
-    private bool direction;
+    private Rigidbody2D rb;
+    public float speed = 8f;
 
-
-    void Start()
+    void Awake()
     {
-        direction = true;
+        rb = GetComponent<Rigidbody2D>();
     }
-
-    void FixedUpdate()
-    {
-        Movement();
-    }
-
-
-    private void Movement(){
-        if(direction == true){
-
-
-
-        }else if (direction == false){
-
-        
-
-        }
-    }
-
 
     void OnCollisionEnter2D(Collision2D collisionDetect){
-        if (collisionDetect.gameObject.tag == "Barrier"){
-            Debug.Log("fuck");
-            direction = !direction;
+        if (collisionDetect.gameObject.tag == "Platform"){
+            rb.AddForce(collisionDetect.transform.right * speed, ForceMode2D.Impulse);
         }
     }
 
