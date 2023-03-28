@@ -23,6 +23,11 @@ public class PlatformCollision : MonoBehaviour
     private float playerY;
 
     private int h1Layer;
+    private int h2Layer;
+    private int h3Layer;
+    private int h4Layer;
+    private int h5Layer;
+    private int h6Layer;
 
     // Physics.IgnoreLayerCollision (layer1, layer2, true) Physics.IgnoreLayerCollision (layer1, layer2, false)
 
@@ -39,6 +44,11 @@ public class PlatformCollision : MonoBehaviour
         h6 = platform6.transform.position.y;
 
         h1Layer = platform1.layer;
+        h2Layer = platform2.layer;
+        h3Layer = platform3.layer;
+        h4Layer = platform4.layer;
+        h5Layer = platform5.layer;
+        h6Layer = platform6.layer;
 
     }
 
@@ -50,44 +60,35 @@ public class PlatformCollision : MonoBehaviour
     
         if (playerY > h1){
             Physics2D.IgnoreLayerCollision(h1Layer, player.layer, false);
-            Debug.Log("yo");
         } else {
             Physics2D.IgnoreLayerCollision(h1Layer, player.layer, true);
         }
-
         if (playerY > h2){
-            platform2.GetComponent<Collider2D>().enabled = true;
-
+            Physics2D.IgnoreLayerCollision(h2Layer, player.layer, false);
         } else {
-            platform2.GetComponent<Collider2D>().enabled = false;
+            Physics2D.IgnoreLayerCollision(h2Layer, player.layer, true);
         }
-
         if (playerY > h3){
-            platform3.GetComponent<Collider2D>().enabled = true;
-            
+            Physics2D.IgnoreLayerCollision(h3Layer, player.layer, false);
         } else {
-            platform3.GetComponent<Collider2D>().enabled = false;
+            Physics2D.IgnoreLayerCollision(h3Layer, player.layer, true);
         }
-
         if (playerY > h4){
-            platform4.GetComponent<Collider2D>().enabled = true;
-            
+            Physics2D.IgnoreLayerCollision(h4Layer, player.layer, false);
         } else {
-            platform4.GetComponent<Collider2D>().enabled = false;
+            Physics2D.IgnoreLayerCollision(h4Layer, player.layer, true);
         }
 
         if (playerY > h5){
-            platform5.GetComponent<Collider2D>().enabled = true;
-            
+            Physics2D.IgnoreLayerCollision(h5Layer, player.layer, false);
         } else {
-            platform5.GetComponent<Collider2D>().enabled = false;
+           Physics2D.IgnoreLayerCollision(h5Layer, player.layer, true);
         }
 
         if (playerY > h6 + 0.3){
-            platform6.GetComponent<Collider2D>().enabled = true;
-            
+            Physics2D.IgnoreLayerCollision(h6Layer, player.layer, false);
         } else {
-            platform6.GetComponent<Collider2D>().enabled = false;
+            Physics2D.IgnoreLayerCollision(h6Layer, player.layer, true);
         }
 
     }
