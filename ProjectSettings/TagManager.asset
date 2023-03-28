@@ -10,6 +10,7 @@ TagManager:
   - cam1
   - cam2
   - enemy
+  - Barrier
   layers:
   - Default
   - TransparentFX
