@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     private int lives;
     private int score;
+    private GameObject player;
+    private GameObject spawn;
 
 
     void Start()
@@ -36,6 +38,11 @@ public class GameManager : MonoBehaviour
 
         if (lives <=0){
             //end game
+        }else{
+            spawn = GameObject.Find("SpawnPoint");
+            player = GameObject.Find("Mario");
+            player.transform.position = spawn.transform.position;
+            player.GetComponent<playerMovement>().respawn();
         }
     }
 }

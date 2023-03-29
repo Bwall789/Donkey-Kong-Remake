@@ -126,9 +126,7 @@ public class playerMovement : MonoBehaviour
         if (hMovement < -0.001f){
             spriteRenderer.flipX = true;
         }else {
-            if (spriteRenderer.flipX == true && hMovement >= 0.001f){
                 spriteRenderer.flipX = false;
-            }
         }
     }
 
@@ -153,7 +151,10 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-
+    public void respawn(){
+        spriteRenderer.flipX = false;
+        enabled = true;
+    }
 
 
 }
