@@ -93,7 +93,18 @@ public class playerMovement : MonoBehaviour
         }
     }
 
+     void OnCollisionEnter2D(Collision2D collisionDetect3)
+     {
+         if (collisionDetect3.gameObject.tag == "Death"){
+            enabled = false;
+            FindObjectOfType<GameManager>().LevelFail();
+         }
 
+          if (collisionDetect3.gameObject.tag == "Win"){
+            enabled = false;
+            FindObjectOfType<GameManager>().LevelComplete();
+         }
+     }
 
     private void AnimateSprite(){
         if (ladder && Mathf.Abs(rb.velocity.y) > 0.005f && Jumping == false){

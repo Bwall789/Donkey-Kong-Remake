@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3986978755726343000}
   m_Layer: 12
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,9 +121,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000047683717, y: 0}
+  m_Offset: {x: 0.0006068945, y: 0}
   serializedVersion: 2
-  m_Radius: 0.050209094
+  m_Radius: 0.054457467
 --- !u!114 &3986978755726343000
 MonoBehaviour:
   m_ObjectHideFlags: 0
