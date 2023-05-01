@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
         //Load next level or end if won
     }
 
+    public void BarrelPoints(){
+
+        score += 100;
+        Debug.Log("barrel points");
+    }
+
 
     public void LevelFail(){
         

@@ -12,6 +12,7 @@ TagManager:
   - enemy
   - Barrier
   - Platform
+  - JumpOver
   layers:
   - Default
   - TransparentFX

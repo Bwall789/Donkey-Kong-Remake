@@ -39,6 +39,8 @@ public class playerMovement : MonoBehaviour
 
     void Update(){
         IsJumping();
+        //BarrelJump();
+        
     }
 
 
@@ -126,7 +128,9 @@ public class playerMovement : MonoBehaviour
         if (hMovement < -0.001f){
             spriteRenderer.flipX = true;
         }else {
+            if (spriteRenderer.flipX == true && hMovement >= 0.001f){
                 spriteRenderer.flipX = false;
+            }
         }
     }
 
@@ -156,5 +160,13 @@ public class playerMovement : MonoBehaviour
         enabled = true;
     }
 
+    // private void BarrelJump(){
+    //     RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+    //     if (hit.collider != null){
+    //         if (hit.collider.CompareTag("Death")){
+    //             Debug.Log("points");
+    //         }
+    //     }
+    // }
 
 }
