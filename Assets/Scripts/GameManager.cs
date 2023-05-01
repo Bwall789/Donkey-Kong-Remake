@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class GameManager : MonoBehaviour
     private int score;
     private GameObject player;
     private GameObject spawn;
+    private int level;
 
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         NewGame();
     }
 
@@ -20,14 +23,26 @@ public class GameManager : MonoBehaviour
         lives = 3;
         score = 0;
 
-        // Load level 1
+        LoadLevel(1);
+    }
+
+    private void LoadLevel(int index){
+        level = index;
+        SceneManager.LoadScene(level);
     }
 
     public void LevelComplete(){
 
         score += 1000;
         Debug.Log("win");
-        //Load next level or end if won
+        int nextLevel= level + 1;
+
+        if (nextLevel < SceneManager.sceneCountInBuildSettings){
+            LoadLevel(nextLevel);
+        } else{
+            LoadLevel(1);
+            level = 1;
+        }
     }
 
     public void BarrelPoints(){
@@ -45,10 +60,11 @@ public class GameManager : MonoBehaviour
         if (lives <=0){
             //end game
         }else{
-            spawn = GameObject.Find("SpawnPoint");
-            player = GameObject.Find("Mario");
-            player.transform.position = spawn.transform.position;
-            player.GetComponent<playerMovement>().respawn();
+            // spawn = GameObject.Find("SpawnPoint");
+            // player = GameObject.Find("Mario");
+            // player.transform.position = spawn.transform.position;
+            // player.GetComponent<playerMovement>().respawn();
+            LoadLevel(level);
         }
     }
 }
