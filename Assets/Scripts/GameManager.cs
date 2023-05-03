@@ -22,8 +22,11 @@ public class GameManager : MonoBehaviour
     private void NewGame(){
         lives = 3;
         score = 0;
-
         LoadLevel(1);
+    }
+
+    public void ChangeUI(){
+        GameObject.Find("UIUpdate").GetComponent<PlayUI>().UIUpdate(score,lives);
     }
 
     private void LoadLevel(int index){
