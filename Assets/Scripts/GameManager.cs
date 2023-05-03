@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
         score += 1000;
         Debug.Log("win");
+        ChangeUI();
         int nextLevel= level + 1;
 
         if (nextLevel < SceneManager.sceneCountInBuildSettings){
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour
 
         score += 100;
         Debug.Log("barrel points");
+        ChangeUI();
+
     }
 
 
@@ -59,6 +62,8 @@ public class GameManager : MonoBehaviour
         
         lives--;
         Debug.Log("lose");
+        ChangeUI();
+
 
         if (lives <=0){
             //end game
