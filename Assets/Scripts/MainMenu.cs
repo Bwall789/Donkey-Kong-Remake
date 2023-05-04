@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     public GameObject manager;
+    public GameObject quitOptions;
     
     public void StartGame(){
         manager.SetActive(true);
@@ -28,10 +29,16 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    public void QuitGame(){
+    public void QuitMenu(){
+        quitOptions.SetActive(true);
+    }
+
+    public void QuitYes(){
         Application.Quit();
         Debug.Log("Quit pressed");
     }
 
-
+    public void QuitNo(){
+        quitOptions.SetActive(false);
+    }
 }
