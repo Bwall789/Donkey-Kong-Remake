@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
         numberOfDeaths = profile.numberOfDeaths;
         levelsCompleted = profile.levelsCompleted;
     }
+
+    public void statsUpdate(){
+        GameObject.Find("UIUpdate").GetComponent<StatsUI>().UIUpdate(highscore,levelsCompleted,numberOfDeaths,profileName);
+    }
    
     public void NewGame(){
         lives = 3;

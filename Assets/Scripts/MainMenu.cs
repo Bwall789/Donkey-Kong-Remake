@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     public GameObject manager;
     public GameObject quitOptions;
     public GameObject optionsMenu;
-    public GameObject awardMenu;
+    public GameObject statsMenu;
 
     [SerializeField] private TMP_Dropdown dropdown;
     public string profileName;
@@ -20,19 +20,20 @@ public class MainMenu : MonoBehaviour
         profileName = dropdown.options[dropdown.value].text;        
         profile = GameObject.Find("GameDataManager").GetComponent<GameDataManager>().profileSelect(profileName);
         GameObject.Find("GameManager").GetComponent<GameManager>().loadProfile(profileName, profile);
+        GameObject.Find("GameManager").GetComponent<GameManager>().statsUpdate();
     }
     
     public void StartGame(){
         GameObject.Find("GameManager").GetComponent<GameManager>().NewGame();
     }
 
-    public void OpenAwards(){
-        awardMenu.SetActive(true);
+    public void OpenStats(){
+        statsMenu.SetActive(true);
     }
 
 
-    public void CloseAwards(){
-        awardMenu.SetActive(false);
+    public void CloseStats(){
+        statsMenu.SetActive(false);
     }
 
     public void OpenOptions(){
