@@ -14,7 +14,6 @@ public class GameDataManager : MonoBehaviour
         profileName = userName;
         profileFile = Application.persistentDataPath + "/" + profileName + ".json";
         readProfileFile();
-        Debug.Log(profileFile);
         return profile;
     }
 
@@ -24,12 +23,10 @@ public class GameDataManager : MonoBehaviour
         {
             string fileContents = File.ReadAllText(profileFile);
             profile = JsonUtility.FromJson<ProfileData>(fileContents);
-            Debug.Log("profile loads");
         } else{
             ProfileData newProfile = new ProfileData(0,profileName,0,0);
             string jsonString = JsonUtility.ToJson(newProfile);
             File.WriteAllText(profileFile, jsonString);
-            Debug.Log("profile new");
 
         }
     }

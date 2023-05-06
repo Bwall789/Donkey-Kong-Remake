@@ -22,14 +22,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void loadProfile(int highscore,string name, int numberOfDeaths, int levelsCompleted){
-        this.highscore = highscore;
-        this.profileName = name;
-        this.numberOfDeaths = numberOfDeaths;
-        this.levelsCompleted = levelsCompleted;
-        Debug.Log(highscore);
-        Debug.Log(profileName);
-
+    public void loadProfile(string name, ProfileData profile){
+        highscore = profile.highscore;
+        profileName = profile.name;
+        numberOfDeaths = profile.numberOfDeaths;
+        levelsCompleted = profile.levelsCompleted;
     }
    
     public void NewGame(){

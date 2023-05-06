@@ -15,18 +15,11 @@ public class MainMenu : MonoBehaviour
     public string profileName;
     public ProfileData profile;
 
-    public int highscore;
-    public int numberOfDeaths;
-    public int levelsCompleted;
-
     public void profileSelect(){
 
         profileName = dropdown.options[dropdown.value].text;        
         profile = GameObject.Find("GameDataManager").GetComponent<GameDataManager>().profileSelect(profileName);
-        profile.highscore = highscore;
-        profile.numberOfDeaths = numberOfDeaths;
-        profile.levelsCompleted = levelsCompleted;
-        GameObject.Find("GameManager").GetComponent<GameManager>().loadProfile(highscore, profileName, numberOfDeaths, levelsCompleted);
+        GameObject.Find("GameManager").GetComponent<GameManager>().loadProfile(profileName, profile);
     }
     
     public void StartGame(){
