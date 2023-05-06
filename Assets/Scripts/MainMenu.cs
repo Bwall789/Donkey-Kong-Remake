@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -8,9 +10,27 @@ public class MainMenu : MonoBehaviour
     public GameObject quitOptions;
     public GameObject optionsMenu;
     public GameObject awardMenu;
+
+    [SerializeField] private TMP_Dropdown dropdown;
+    public string profileName;
+    public ProfileData profile;
+
+    public int highscore;
+    public int numberOfDeaths;
+    public int levelsCompleted;
+
+    public void profileSelect(){
+
+        profileName = dropdown.options[dropdown.value].text;        
+        profile = GameObject.Find("GameDataManager").GetComponent<GameDataManager>().profileSelect(profileName);
+        profile.highscore = highscore;
+        profile.numberOfDeaths = numberOfDeaths;
+        profile.levelsCompleted = levelsCompleted;
+        GameObject.Find("GameManager").GetComponent<GameManager>().loadProfile(highscore, profileName, numberOfDeaths, levelsCompleted);
+    }
     
     public void StartGame(){
-        manager.SetActive(true);
+        GameObject.Find("GameManager").GetComponent<GameManager>().NewGame();
     }
 
     public void OpenAwards(){

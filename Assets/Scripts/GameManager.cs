@@ -11,18 +11,31 @@ public class GameManager : MonoBehaviour
     private GameObject spawn;
     private int level;
 
+    private int highscore;
+    private string profileName;
+    private int numberOfDeaths;
+    private int levelsCompleted;
+
 
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        NewGame();
     }
 
+    public void loadProfile(int highscore,string name, int numberOfDeaths, int levelsCompleted){
+        this.highscore = highscore;
+        this.profileName = name;
+        this.numberOfDeaths = numberOfDeaths;
+        this.levelsCompleted = levelsCompleted;
+        Debug.Log(highscore);
+        Debug.Log(profileName);
+
+    }
    
-    private void NewGame(){
+    public void NewGame(){
         lives = 3;
         score = 0;
-        LoadLevel(1);
+        LoadFirstLevel(1);
     }
 
     public void ChangeUI(){
@@ -31,6 +44,22 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel(int index){
         level = index;
+
+        Camera camera = Camera.main;
+
+        if (camera != null){
+            camera.cullingMask = 0;
+        }
+
+        Invoke(nameof(LoadScene), 1f);
+    }
+
+    private void LoadFirstLevel(int index){
+        level = index;
+        LoadScene();
+    }
+
+    private void LoadScene(){
         SceneManager.LoadScene(level);
     }
 
@@ -39,7 +68,7 @@ public class GameManager : MonoBehaviour
         score += 1000;
         Debug.Log("win");
         ChangeUI();
-        int nextLevel= level + 1;
+        int nextLevel = level + 1;
 
         if (nextLevel < SceneManager.sceneCountInBuildSettings){
             LoadLevel(nextLevel);
@@ -66,12 +95,8 @@ public class GameManager : MonoBehaviour
 
 
         if (lives <=0){
-            //end game
+            SceneManager.LoadScene(0);
         }else{
-            // spawn = GameObject.Find("SpawnPoint");
-            // player = GameObject.Find("Mario");
-            // player.transform.position = spawn.transform.position;
-            // player.GetComponent<playerMovement>().respawn();
             LoadLevel(level);
         }
     }
