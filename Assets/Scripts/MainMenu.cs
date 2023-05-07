@@ -11,6 +11,12 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject statsMenu;
 
+    public GameObject achievment1;
+    public GameObject achievment2;
+    public GameObject achievment3;
+    public GameObject achievment4;
+    public GameObject achievment5;
+
     [SerializeField] private TMP_Dropdown dropdown;
     public string profileName;
     public ProfileData profile;
@@ -29,6 +35,36 @@ public class MainMenu : MonoBehaviour
 
     public void OpenStats(){
         statsMenu.SetActive(true);
+
+        if (profile.threeLevelsNoDamage == true){
+            achievment1.SetActive(true);
+        }else {
+            achievment1.SetActive(false);
+        }
+
+        if (profile.tenDeaths == true){
+            achievment2.SetActive(true);
+        }else {
+            achievment2.SetActive(false);
+        }
+
+        if (profile.onTheBoard == true){
+            achievment3.SetActive(true);
+        }else {
+            achievment3.SetActive(false);
+        }
+
+        if (profile.levelScore2500 == true){
+            achievment4.SetActive(true);
+        }else {
+            achievment4.SetActive(false);
+        }
+
+        if (profile.TwentyBarrels == true){
+            achievment5.SetActive(true);
+        }else {
+            achievment5.SetActive(false);
+        }
     }
 
 
