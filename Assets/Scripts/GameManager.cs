@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     public void LevelComplete(){
 
         score += 1000;
+        levelsCompleted++;
         Debug.Log("win");
         ChangeUI();
         int nextLevel = level + 1;
@@ -91,11 +92,17 @@ public class GameManager : MonoBehaviour
     public void LevelFail(){
         
         lives--;
+        numberOfDeaths++;
         Debug.Log("lose");
         ChangeUI();
 
 
         if (lives <=0){
+
+            if (score > highscore){
+                highscore = score;
+            }
+            GameObject.Find("GameDataManager").GetComponent<GameDataManager>().writeProfileFile(profileName,highscore,numberOfDeaths,levelsCompleted);
             SceneManager.LoadScene(0);
         }else{
             LoadLevel(level);

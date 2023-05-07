@@ -9,6 +9,11 @@ public class GameDataManager : MonoBehaviour
     string profileName;
     ProfileData profile = new ProfileData(0,"",0,0);
 
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public ProfileData profileSelect(string userName)
     {
         profileName = userName;
@@ -31,9 +36,18 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    public void writeProfileFile()
+    public void writeProfileFile(string usersName, int highestscore, int numOfDeaths, int levelsComplete)
     {
-        string jsonString = JsonUtility.ToJson(profile);
+        profileName = usersName;
+        profileFile = Application.persistentDataPath + "/" + profileName + ".json";
+        ProfileData profile2 = new ProfileData(0,"",0,0);
+
+        profile2.name = usersName;
+        profile2.highscore = highestscore;
+        profile2.numberOfDeaths = numOfDeaths;
+        profile2.levelsCompleted = levelsComplete;
+
+        string jsonString = JsonUtility.ToJson(profile2);
         File.WriteAllText(profileFile, jsonString);
     }
 }
