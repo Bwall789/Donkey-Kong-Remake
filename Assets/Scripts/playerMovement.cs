@@ -39,10 +39,18 @@ public class playerMovement : MonoBehaviour
 
     void Update(){
         IsJumping();
-        //BarrelJump();
-        
+        pause();
     }
 
+    void pause(){
+        if (Input.GetKeyDown("escape")){
+            if (Time.timeScale == 1){
+                Time.timeScale = 0;
+                }else{
+                    Time.timeScale = 1;
+            }
+        }
+    }
 
     void FixedUpdate() {
         Movement();
@@ -145,7 +153,7 @@ public class playerMovement : MonoBehaviour
 
     private void IsJumping(){
         
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.001f){
+        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.001f * Time.deltaTime){
             Jumping = true;
             rb.AddForce(new Vector2(0.001f, JumpHeight), ForceMode2D.Impulse);
         }
@@ -159,14 +167,5 @@ public class playerMovement : MonoBehaviour
         spriteRenderer.flipX = false;
         enabled = true;
     }
-
-    // private void BarrelJump(){
-    //     RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
-    //     if (hit.collider != null){
-    //         if (hit.collider.CompareTag("Death")){
-    //             Debug.Log("points");
-    //         }
-    //     }
-    // }
 
 }
