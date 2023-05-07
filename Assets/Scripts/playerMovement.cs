@@ -85,7 +85,7 @@ public class playerMovement : MonoBehaviour
         }
 
         if(ladder == true && hMovement == 0 && Mathf.Abs(rb.velocity.y) > 0.005f){
-            rb.gravityScale = 0;
+            rb.gravityScale = -1;
         }else{
             rb.gravityScale = 1;
         }
