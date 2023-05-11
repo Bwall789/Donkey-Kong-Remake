@@ -5,16 +5,22 @@ using UnityEngine;
 public class BarrelMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float speed = 8f;
+    private float speed;
+    public EnemyType type;
+    private bool isDestructable;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        speed = type.speed;
+        isDestructable = type.destructable;
     }
 
     void OnCollisionEnter2D(Collision2D collisionDetect){
-        if (collisionDetect.gameObject.tag == "Platform"){
-            rb.AddForce(collisionDetect.transform.right * speed, ForceMode2D.Impulse);
+        if (this.GetComponent<Rewindable>().isRewinding == false){
+            if (collisionDetect.gameObject.tag == "Platform"){
+                rb.AddForce(collisionDetect.transform.right * speed, ForceMode2D.Impulse);
+            }
         }
     }
 

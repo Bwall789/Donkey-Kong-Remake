@@ -158,7 +158,7 @@ public class playerMovement : MonoBehaviour
             rb.AddForce(new Vector2(0.001f, JumpHeight), ForceMode2D.Impulse);
         }
 
-        if (Jumping == true && Mathf.Abs(rb.velocity.y) < 0.001f){
+        if (Jumping == true && Mathf.Abs(rb.velocity.y) < 0.005f){
             Jumping = false;
         }
     }
