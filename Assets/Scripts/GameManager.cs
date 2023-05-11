@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private GameObject spawn;
     private int level;
+    public Animator transition;
 
     // player stats
     private int highscore;
@@ -66,26 +67,30 @@ public class GameManager : MonoBehaviour
     private void LoadLevel(int index){
         level = index;
 
-        Camera camera = Camera.main;
+        //Camera camera = Camera.main;
 
-        if (camera != null){
-            camera.cullingMask = 0;
-        }
+        //if (camera != null){
+        //    camera.cullingMask = 0;
+        //}
 
         Invoke(nameof(LoadScene), 1f);
     }
 
     private void LoadFirstLevel(int index){
         level = index;
-        LoadScene();
+        StartCoroutine(LoadScene());
     }
 
-    private void LoadScene(){
+    IEnumerator LoadScene(){
         levelScore = 0;
         barrelsJumped = 0;
         if(numLevelsNoDamage >=3){
             threeLevelsNoDamage = true;
         }
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
         SceneManager.LoadScene(level);
     }
 

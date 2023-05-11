@@ -853,6 +853,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4140906036716943482, guid: 060619c8f69ab0844bd91ae17b23c404, type: 3}
+      propertyPath: MoveSpeed
+      value: 4.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4769374318367817390, guid: 060619c8f69ab0844bd91ae17b23c404, type: 3}
       propertyPath: m_Name
       value: Mario
@@ -2131,8 +2135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3922020376973607533, guid: 922d883a508ea6944a7960715796c0ae, type: 3}
-  minTime: 3
-  maxTime: 10
+  type: {fileID: 11400000, guid: 9018e0b9e3067c744bbb0a977cadb81c, type: 2}
+  minTime: 2
+  maxTime: 6
 --- !u!4 &1740950281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6277422893267908015, guid: 9df146bc96800a84db2e0d93c6fedc25, type: 3}

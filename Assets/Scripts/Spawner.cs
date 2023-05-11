@@ -5,13 +5,16 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject prefab;
+    public spawnerType type;
     public float minTime;
     public float maxTime;
 
 
     void Start()
     {
-        Spawn();   
+        Spawn(); 
+        minTime = type.minTime;
+        maxTime = type.maxTime;  
     }
 
     private void Spawn()

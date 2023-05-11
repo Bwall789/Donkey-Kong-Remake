@@ -2290,6 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3922020376973607533, guid: 922d883a508ea6944a7960715796c0ae, type: 3}
+  type: {fileID: 11400000, guid: 3859431dd1f876646abfc17e0294eae7, type: 2}
   minTime: 3
   maxTime: 8
 --- !u!4 &1740950281 stripped
