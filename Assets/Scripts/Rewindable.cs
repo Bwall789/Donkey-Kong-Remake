@@ -29,7 +29,7 @@ public class Rewindable : MonoBehaviour
             StopRewind();
             spawn = true;
             rb.constraints = RigidbodyConstraints2D.None;
-            if (this.GetComponent<playerMovement>() != null){
+            if (this.GetComponent<PlayerMovement2>() != null){
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }
@@ -56,7 +56,7 @@ public class Rewindable : MonoBehaviour
     }
 
     public void Record(){
-        if (pointsInTime.Count > Mathf.Round(0.4f / Time.fixedDeltaTime)){
+        if (pointsInTime.Count > Mathf.Round(0.8f / Time.fixedDeltaTime)){
             pointsInTime.RemoveAt(pointsInTime.Count - 1);
         }else{
             pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity, rb.angularVelocity));

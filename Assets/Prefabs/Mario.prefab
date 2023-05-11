@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4769374318367817390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0141, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6891551817855171690}
@@ -109,7 +109,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &5093241780906042364
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRewinding: 0
+  spawn: 1
 --- !u!114 &4140906036716943482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607af1a22d6df264e8ffd2d9db90d3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 6.37
+  MoveSpeed: 4.6
   JumpSpeed: 2
   JumpHeight: 4.5
   ladder: 0
