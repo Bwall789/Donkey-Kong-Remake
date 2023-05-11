@@ -21,6 +21,7 @@ public class Rewindable : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown("backspace")){
+            GameObject.Find("GameManager").GetComponent<GameManager>().modifyScore(-50);
             StartRewind();
             spawn = false;
         }

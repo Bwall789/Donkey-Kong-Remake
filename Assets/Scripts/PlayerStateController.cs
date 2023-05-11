@@ -17,7 +17,6 @@ public class PlayerStateController : MonoBehaviour{
 
     [SerializeField] private PlayerState StartingState;
     public PlayerState currentState;
-    private bool grounded = false;
     private PlayerState heldstate;
 
 
@@ -65,20 +64,16 @@ public class PlayerStateController : MonoBehaviour{
     void OnCollisionEnter2D(Collision2D collisionDetect3)
      {
          if (collisionDetect3.gameObject.tag == "Death"){
-            ChangePlayerState(PlayerState.MOVING);
             enabled = false;
             FindObjectOfType<GameManager>().LevelFail();
          }
 
           if (collisionDetect3.gameObject.tag == "Win"){
-            ChangePlayerState(PlayerState.MOVING);
             enabled = false;
             FindObjectOfType<GameManager>().LevelComplete();
          }
 
          if (collisionDetect3.gameObject.layer > 5 && collisionDetect3.gameObject.layer < 12 || collisionDetect3.gameObject.layer == 16){
-            Debug.Log("det");
-            grounded = true;
             if (currentState != PlayerState.LADDER){
                 ChangePlayerState(PlayerState.MOVING);
             }
@@ -87,7 +82,9 @@ public class PlayerStateController : MonoBehaviour{
 
     void OnCollisionExit2D(Collision2D collisionDetect4){
         if (collisionDetect4.gameObject.layer > 5 && collisionDetect4.gameObject.layer < 12 || collisionDetect4.gameObject.layer == 16){
-            grounded = false;
+            if(currentState != PlayerState.LADDER){
+                currentState = PlayerState.JUMPING;
+            }
         }
     }
 }

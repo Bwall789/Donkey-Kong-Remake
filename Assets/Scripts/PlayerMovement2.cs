@@ -31,6 +31,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         InvokeRepeating(nameof(AnimateSprite), 1f/12f, 1f/12f);
         currentState = GetComponent<PlayerStateController>().currentState;
+        Debug.Log(currentState);
     }
 
     private void OnDisable(){
@@ -67,8 +68,10 @@ public class PlayerMovement2 : MonoBehaviour
 
         if (currentState == PlayerState.LADDER && hMovement == 0){
             climbing = true;
+            rb.gravityScale = 0f;
             transform.position += new Vector3(0.001f,vMovement,0.001f) * Time.deltaTime * climbSpeed;
         }else{
+            rb.gravityScale = 1f;
             climbing = false;
         }
     }
@@ -91,6 +94,10 @@ public class PlayerMovement2 : MonoBehaviour
 
         if (currentState == PlayerState.IDLE){
             spriteRenderer.sprite = runSprites[0];
+        }
+
+        if (currentState == PlayerState.JUMPING){
+            spriteRenderer.sprite = runSprites[3];
         }
 
         if (currentState == PlayerState.MOVING){

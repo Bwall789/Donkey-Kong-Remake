@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b86b32b5b648748ab043ed1a223c81, type: 3}
   m_Name: blue barrel
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 1
   destructable: 1

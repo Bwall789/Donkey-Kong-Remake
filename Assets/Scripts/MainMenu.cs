@@ -94,4 +94,8 @@ public class MainMenu : MonoBehaviour
     public void QuitNo(){
         quitOptions.SetActive(false);
     }
+
+    public void fullscreen(){
+        Screen.fullScreen = !Screen.fullScreen;
+    }
 }
