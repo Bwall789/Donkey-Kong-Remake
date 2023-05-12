@@ -37,9 +37,16 @@ public class PlayerStateController : MonoBehaviour{
         }
     }
 
+    void quit(){
+        if (Input.GetKeyDown("k")){
+                GameObject.Find("GameManager").GetComponent<GameManager>().LoadLevel(0);
+        }
+    }
+
     void Update(){
 
         pause();
+        quit();
     }
 
     public void ChangePlayerState(PlayerState newState) {

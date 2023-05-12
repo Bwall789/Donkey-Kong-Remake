@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         GameObject.Find("UIUpdate").GetComponent<PlayUI>().UIUpdate(score,lives);
     }
 
-    private void LoadLevel(int index){
+    public void LoadLevel(int index){
         level = index;
 
         Camera camera = Camera.main;
