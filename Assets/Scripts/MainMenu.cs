@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
     public GameObject quitOptions;
     public GameObject optionsMenu;
     public GameObject statsMenu;
+    public GameObject creditsMenu;
+
 
     public GameObject achievment1;
     public GameObject achievment2;
@@ -80,6 +82,16 @@ public class MainMenu : MonoBehaviour
 
     public void CloseOptions(){
         optionsMenu.SetActive(false);
+    }
+
+    public void OpenCredits(){
+        creditsMenu.SetActive(true);
+
+    }
+
+
+    public void CloseCredits(){
+        creditsMenu.SetActive(false);
     }
 
     public void QuitMenu(){
